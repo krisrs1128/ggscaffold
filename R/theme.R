@@ -13,7 +13,8 @@
 #'   those that are not will be filled in with defaults.
 #' @return opts [list]  A version of opts with unspecified options filled in
 #'   with defaults.
-merge_default_opts <- function(opts = list()) {
+#' @export
+merge_theme_opts <- function(opts = list()) {
   default_opts <- list(
     border_type = element_blank(),
     spacing = 0,
@@ -29,10 +30,14 @@ merge_default_opts <- function(opts = list()) {
 #'   ggplot theme(). Options that are already specified will not be changed,
 #' @return theme_obj [ggplot theme] A theme object that can be used to modify
 #'   the appearance of a ggplot object.
+#' @importFrom ggplot2 theme_update element_blank element_text
+#' @importFrom scales unit
+#' @export
 min_theme <- function(opts = list()) {
-  opts <- merge_default_opts(opts)
+  opts <- merge_theme_opts(opts)
   theme_update(
     panel.border = opts$border_type,
+    panel.background = element_blank(),
     panel.grid = element_blank(),
     panel.spacing = unit(opts$spacing, "line"),
     legend.title = element_text(size = opts$subtitle_size),
