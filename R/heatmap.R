@@ -42,6 +42,7 @@ merge_heatmap_opts <- function(opts = list()) {
 #' @importFrom ggplot ggplot geom_tile aes_string scale_x_discrete
 #'   scale_fill_gradient facet_grid
 #' @importFrom viridis viridis
+#' @importFrom maggritr %>%
 #' @examples
 #' X <- matrix(rnorm(10 * 10), 10, 10, dimnames = list(1:10, letters[1:10]))
 #' plot_data <- melt(X, varnames = c("x", "y"), value.name = "fill")
