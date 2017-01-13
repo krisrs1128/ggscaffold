@@ -40,7 +40,7 @@ merge_heatmap_opts <- function(opts = list()) {
 #' @return p [ggplot] A ggplot geom_tile() heatmap with nice defaults.
 #' @importFrom viridis viridis
 #' @importFrom ggplot2 ggplot geom_tile aes_string scale_x_discrete
-#'   scale_fill_gradient facet_grid
+#'   scale_fill_gradient
 #' @importFrom viridis viridis
 #' @importFrom magrittr %>%
 #' @examples
