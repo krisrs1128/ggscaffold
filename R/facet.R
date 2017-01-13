@@ -40,7 +40,7 @@ order_vars <- function(X, vars, var_orders) {
 #' @return p [ggplot object] The version of p including potential faceting.
 add_facet <- function(p, facet_terms = NULL) {
   if (!is.null(facet_terms)) {
-    p + facet_grid(paste0(facet_terms, collapse = "~"))
+    p <- p + facet_grid(paste0(facet_terms, collapse = "~"))
   }
   p
 }
