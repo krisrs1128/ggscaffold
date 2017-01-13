@@ -51,8 +51,9 @@ merge_line_opts <- function(opts = list()) {
 #' @examples
 #' data(lines)
 #' opts <- list(col = "color", facet_terms = c("rows", "columns"),
-#'              color_scale = scale_color_brewer(palette = "Set3"))
-#' gglines(plot_data, opts)
+#'              color_scale = ggplot2::scale_color_brewer(palette = "Set3"))
+#' gglines(lines, opts)
+#' @export
 gglines <- function(plot_data, opts = list()) {
   ## merge and prepare opts
   opts <- merge_line_opts(opts)
