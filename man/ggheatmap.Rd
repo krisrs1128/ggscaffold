@@ -25,7 +25,7 @@ Make heatmaps with nice defaults
 }
 \examples{
 X <- matrix(rnorm(10 * 10), 10, 10, dimnames = list(1:10, letters[1:10]))
-plot_data <- melt(X, varnames = c("x", "y"), value.name = "fill")
+plot_data <- reshape2::melt(X, varnames = c("x", "y"), value.name = "fill")
 opts <- list(y_order = letters[10:1])
 ggheatmap(plot_data, opts)
 }
