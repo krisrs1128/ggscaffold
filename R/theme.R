@@ -30,23 +30,25 @@ merge_theme_opts <- function(opts = list()) {
 #'   ggplot theme(). Options that are already specified will not be changed,
 #' @return theme_obj [ggplot theme] A theme object that can be used to modify
 #'   the appearance of a ggplot object.
-#' @importFrom ggplot2 theme_update element_blank element_text
+#' @importFrom ggplot2 theme_bw theme element_blank element_text %+replace%
+#'   element_rect
 #' @importFrom grid unit
 #' @export
 min_theme <- function(opts = list()) {
   opts <- merge_theme_opts(opts)
-  theme_update(
-    panel.border = element_rect("transparent", size = opts$border_size),
-    panel.background = element_blank(),
-    panel.grid = element_blank(),
-    panel.spacing = unit(opts$spacing, "line"),
-    legend.title = element_text(size = opts$subtitle_size),
-    legend.text = element_text(size = opts$text_size),
-    legend.key = element_blank(),
-    axis.text = element_text(size = opts$text_size),
-    axis.title = element_text(size = opts$subtitle_size),
-    axis.ticks = element_blank(),
-    strip.background = element_blank(),
-    strip.text = element_text(size = opts$subtitle_size)
-  )
+  theme_bw() %+replace%
+    theme(
+      panel.border = element_rect("transparent", size = opts$border_size),
+      panel.background = element_blank(),
+      panel.grid = element_blank(),
+      panel.spacing = unit(opts$spacing, "line"),
+      legend.title = element_text(size = opts$subtitle_size),
+      legend.text = element_text(size = opts$text_size),
+      legend.key = element_blank(),
+      axis.text = element_text(size = opts$text_size),
+      axis.title = element_text(size = opts$subtitle_size),
+      axis.ticks = element_blank(),
+      strip.background = element_blank(),
+      strip.text = element_text(size = opts$subtitle_size)
+    )
 }
