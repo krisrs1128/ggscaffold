@@ -45,10 +45,14 @@ merge_line_opts <- function(opts = list()) {
 #'   ggplot theme(). Options that are already specified will not be changed,
 #'   those that are not will be filled in with defaults.
 #' @return p [ggplot] A ggplot geom_tile() heatmap with nice defaults.
-#' @importFrom ggplot ggplot geom_tile aes_string scale_x_discrete
+#' @importFrom ggplot2 ggplot geom_tile aes_string scale_x_discrete
 #'   scale_fill_gradient facet_grid
-#' @importFrom maggritr %>%
+#' @importFrom magrittr %>%
 #' @examples
+#' data(lines)
+#' opts <- list(col = "color", facet_terms = c("rows", "columns"),
+#'              color_scale = scale_color_brewer(palette = "Set3"))
+#' gglines(plot_data, opts)
 gglines <- function(plot_data, opts = list()) {
   ## merge and prepare opts
   opts <- merge_line_opts(opts)
