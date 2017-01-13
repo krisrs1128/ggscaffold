@@ -5,7 +5,7 @@
 ## author: kriss1@stanford.edu
 
 
-##' Merge default options for a heatmap
+#' Merge default options for a heatmap
 #' @param opts [list] A partially specified list used to customize appearance in
 #'   ggplot theme(). Options that are already specified will not be changed,
 #'   those that are not will be filled in with defaults.
