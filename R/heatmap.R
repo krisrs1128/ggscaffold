@@ -45,9 +45,10 @@ merge_heatmap_opts <- function(opts = list()) {
 #' @importFrom magrittr %>%
 #' @examples
 #' X <- matrix(rnorm(10 * 10), 10, 10, dimnames = list(1:10, letters[1:10]))
-#' plot_data <- melt(X, varnames = c("x", "y"), value.name = "fill")
+#' plot_data <- reshape2::melt(X, varnames = c("x", "y"), value.name = "fill")
 #' opts <- list(y_order = letters[10:1])
 #' ggheatmap(plot_data, opts)
+#' @export
 ggheatmap <- function(plot_data, opts = list()) {
   # merge defaults and relevel variables
   opts <- merge_heatmap_opts(opts)
