@@ -5,7 +5,7 @@
 ## author: kriss1@stanford.edu
 
 
-##' Merge default options for a heatmap
+#' Merge default options for a heatmap
 #' @param opts [list] A partially specified list used to customize appearance in
 #'   ggplot theme(). Options that are already specified will not be changed,
 #'   those that are not will be filled in with defaults.
@@ -28,38 +28,6 @@ merge_heatmap_opts <- function(opts = list()) {
   modifyList(default_opts, opts)
 }
 
-##' Reorder A collection of factors in a data.frame
-##'
-##' @param X [data.frame] A data.frame whose columns have levels we want to
-##'   reorder.
-##' @param vars [numeric vector] A vector of column names in X, for each column
-##'   that we want to reorder.
-##' @param vars [list of vectors] The new levels to use for each name in vars.
-##'   If this has any nulls, we use the existing levels, or just the unique
-##'   values.
-##' @return X [data.frame] A version of X with the columns in vars already
-##'   reordered.
-##' @export
-order_vars <- function(X, vars, var_orders) {
-  for (i in seq_along(vars)) {
-
-    ## If levels already exist, but are not specified in var_orders, use the
-    ## existing ordering.
-    if (is.null(var_orders[[i]])) {
-      cur_lev <- levels(X[, vars[i]])
-
-      if (!is.null(cur_lev)) {
-        var_orders[[i]] <- cur_lev
-      } else {
-        var_orders[[i]] <- unique(X[, vars[i]])
-      }
-    }
-
-    X[, vars[i]] <- factor(X[, vars[i]], levels = var_orders[[i]])
-  }
-  X
-}
-
 #' Make heatmaps with nice defaults
 #' @param plot_data [data.frame] A data.frame with data to create the heatmap
 #'   from. The variables for x, y axis, filling, and faceting must be provided
@@ -71,9 +39,10 @@ order_vars <- function(X, vars, var_orders) {
 #'   those that are not will be filled in with defaults.
 #' @return p [ggplot] A ggplot geom_tile() heatmap with nice defaults.
 #' @importFrom viridis viridis
-#' @importFrom ggplot ggplot geom_tile aes_string scale_x_discrete
+#' @importFrom ggplot2 ggplot geom_tile aes_string scale_x_discrete
 #'   scale_fill_gradient facet_grid
 #' @importFrom viridis viridis
+#' @importFrom magrittr %>%
 #' @examples
 #' X <- matrix(rnorm(10 * 10), 10, 10, dimnames = list(1:10, letters[1:10]))
 #' plot_data <- melt(X, varnames = c("x", "y"), value.name = "fill")
@@ -99,8 +68,5 @@ ggheatmap <- function(plot_data, opts = list()) {
     ) +
     min_theme(opts$theme_opts)
 
-  if (!is.null(opts$facet_fmla)) {
-    p + facet_grid(paste0(facet_terms, collapse = "~"))
-  }
-  p
+  add_facet(p, opts$facet_terms)
 }

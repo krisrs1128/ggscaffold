@@ -16,7 +16,7 @@
 #' @export
 merge_theme_opts <- function(opts = list()) {
   default_opts <- list(
-    border_type = element_blank(),
+    border_size = 0,
     spacing = 0,
     subtitle_size = 7,
     text_size = 5
@@ -31,12 +31,12 @@ merge_theme_opts <- function(opts = list()) {
 #' @return theme_obj [ggplot theme] A theme object that can be used to modify
 #'   the appearance of a ggplot object.
 #' @importFrom ggplot2 theme_update element_blank element_text
-#' @importFrom scales unit
+#' @importFrom grid unit
 #' @export
 min_theme <- function(opts = list()) {
   opts <- merge_theme_opts(opts)
   theme_update(
-    panel.border = opts$border_type,
+    panel.border = element_rect("transparent", size = opts$border_size),
     panel.background = element_blank(),
     panel.grid = element_blank(),
     panel.spacing = unit(opts$spacing, "line"),
