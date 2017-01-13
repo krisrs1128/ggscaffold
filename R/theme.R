@@ -31,7 +31,7 @@ merge_theme_opts <- function(opts = list()) {
 #' @return theme_obj [ggplot theme] A theme object that can be used to modify
 #'   the appearance of a ggplot object.
 #' @importFrom ggplot2 theme_update element_blank element_text
-#' @importFrom scales unit
+#' @importFrom grid unit
 #' @export
 min_theme <- function(opts = list()) {
   opts <- merge_theme_opts(opts)
