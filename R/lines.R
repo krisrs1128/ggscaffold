@@ -19,10 +19,10 @@ merge_line_opts <- function(opts = list()) {
     "y" = "y",
     "group" = NULL,
     "col" = NULL,
+    "linetype" = NULL,
 
     ## scale options
     "color_scale" = scale_color_brewer(palette = "Set2"),
-    "linetype" = NULL,
 
     ## faceting
     "facet_terms" = NULL,
@@ -60,7 +60,8 @@ gglines <- function(plot_data, opts = list()) {
     "x" = opts$x,
     "y" = opts$y,
     "group" = opts$group,
-    "col" = opts$col
+    "col" = opts$col,
+    "linetype" = opts$linetype
   )
   aes_opts <- aes_opts[!sapply(aes_opts, is.null)]
 
