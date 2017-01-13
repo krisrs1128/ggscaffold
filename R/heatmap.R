@@ -28,38 +28,6 @@ merge_heatmap_opts <- function(opts = list()) {
   modifyList(default_opts, opts)
 }
 
-##' Reorder A collection of factors in a data.frame
-##'
-##' @param X [data.frame] A data.frame whose columns have levels we want to
-##'   reorder.
-##' @param vars [numeric vector] A vector of column names in X, for each column
-##'   that we want to reorder.
-##' @param vars [list of vectors] The new levels to use for each name in vars.
-##'   If this has any nulls, we use the existing levels, or just the unique
-##'   values.
-##' @return X [data.frame] A version of X with the columns in vars already
-##'   reordered.
-##' @export
-order_vars <- function(X, vars, var_orders) {
-  for (i in seq_along(vars)) {
-
-    ## If levels already exist, but are not specified in var_orders, use the
-    ## existing ordering.
-    if (is.null(var_orders[[i]])) {
-      cur_lev <- levels(X[, vars[i]])
-
-      if (!is.null(cur_lev)) {
-        var_orders[[i]] <- cur_lev
-      } else {
-        var_orders[[i]] <- unique(X[, vars[i]])
-      }
-    }
-
-    X[, vars[i]] <- factor(X[, vars[i]], levels = var_orders[[i]])
-  }
-  X
-}
-
 #' Make heatmaps with nice defaults
 #' @param plot_data [data.frame] A data.frame with data to create the heatmap
 #'   from. The variables for x, y axis, filling, and faceting must be provided
@@ -99,8 +67,5 @@ ggheatmap <- function(plot_data, opts = list()) {
     ) +
     min_theme(opts$theme_opts)
 
-  if (!is.null(opts$facet_fmla)) {
-    p + facet_grid(paste0(facet_terms, collapse = "~"))
-  }
-  p
+  add_facet(p, opts$facet_terms)
 }
