@@ -37,7 +37,9 @@ order_vars <- function(X, vars, var_orders) {
 #' @param facet_terms [list of strings] The names of the columns of the data
 #'    used in generating p which we want to facet by. Defaults to NULL, in which
 #'    case no faceting is applied.
+#' @importFrom ggplot2 facet_grid
 #' @return p [ggplot object] The version of p including potential faceting.
+#' @export
 add_facet <- function(p, facet_terms = NULL) {
   if (!is.null(facet_terms)) {
     p <- p + facet_grid(paste0(facet_terms, collapse = "~"))

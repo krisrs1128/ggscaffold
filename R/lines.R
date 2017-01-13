@@ -10,6 +10,7 @@
 #'   those that are not will be filled in with defaults.
 #' @return opts [list]  A version of opts with unspecified options filled in
 #'   with defaults.
+#' @importFrom ggplot2 scale_color_brewer
 #' @export
 merge_line_opts <- function(opts = list()) {
   default_opts <- list(
@@ -45,13 +46,13 @@ merge_line_opts <- function(opts = list()) {
 #'   ggplot theme(). Options that are already specified will not be changed,
 #'   those that are not will be filled in with defaults.
 #' @return p [ggplot] A ggplot geom_tile() heatmap with nice defaults.
-#' @importFrom ggplot2 ggplot geom_tile aes_string scale_x_discrete
-#'   scale_fill_gradient facet_grid
+#' @importFrom ggplot2 ggplot geom_line aes_string
 #' @importFrom magrittr %>%
 #' @examples
 #' data(lines)
 #' opts <- list(col = "color", facet_terms = c("rows", "columns"),
-#'              color_scale = ggplot2::scale_color_brewer(palette = "Set3"))
+#'              color_scale = ggplot2::scale_color_brewer(palette = "Set1"),
+#'              theme_opts = list(border_size = .6))
 #' gglines(lines, opts)
 #' @export
 gglines <- function(plot_data, opts = list()) {
