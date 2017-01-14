@@ -22,6 +22,10 @@ merge_line_opts <- function(opts = list()) {
     "col" = NULL,
     "linetype" = NULL,
 
+    ## nonaesthetic options
+    "size" = 0.5,
+    "alpha" = 1,
+
     ## scale options
     "color_scale" = scale_color_brewer(palette = "Set2"),
 
@@ -77,7 +81,10 @@ gglines <- function(plot_data, opts = list()) {
   }
 
   p <- ggplot(plot_data) +
-    geom_line(do.call(aes_string, aes_opts)) +
+      geom_line(
+          do.call(aes_string, aes_opts),
+          size = opts$size, alpha = opts$alpha
+      ) +
     opts$color_scale +
     min_theme(opts$theme_opts)
 
