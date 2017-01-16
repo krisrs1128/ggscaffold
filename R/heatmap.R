@@ -19,11 +19,11 @@ merge_heatmap_opts <- function(opts = list()) {
     "y" = "y",
     "fill" = "fill",
     "fill_colors" = viridis(256, option = "D"),
+    "fill_breaks" = NULL,
     "facet_terms" = NULL,
     "x_order" = NULL,
     "y_order" = NULL,
-    "theme_opts" = list(),
-    "fill_breaks" = NULL
+    "theme_opts" = list()
   )
   modifyList(default_opts, opts)
 }
@@ -38,10 +38,8 @@ merge_heatmap_opts <- function(opts = list()) {
 #'   ggplot theme(). Options that are already specified will not be changed,
 #'   those that are not will be filled in with defaults.
 #' @return p [ggplot] A ggplot geom_tile() heatmap with nice defaults.
-#' @importFrom viridis viridis
 #' @importFrom ggplot2 ggplot geom_tile aes_string scale_x_discrete
 #'   scale_fill_gradient
-#' @importFrom viridis viridis
 #' @importFrom magrittr %>%
 #' @examples
 #' X <- matrix(rnorm(10 * 10), 10, 10, dimnames = list(1:10, letters[1:10]))
