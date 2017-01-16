@@ -63,7 +63,10 @@ ggcontours <- function(plot_data, opts = list()) {
     stat_density2d(
       do.call(aes_string, aes_opts)
     ) +
-    opts$color_scale +
+    scale_fill_gradientn(
+      colors = opts$fill_colors,
+      breaks = opts$fill_breaks
+    ) +
     min_theme(opts$theme_opts)
 
   add_facet(p, opts$facet_terms)
