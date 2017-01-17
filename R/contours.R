@@ -52,6 +52,19 @@ merge_contour_opts <- function(opts = list()) {
 }
 
 
+#' Default Contour / Stat Density 2D plot
+#'
+#' This is a default for visualizing 2d density plots.
+#'
+#' @param plot_data [data.frame] A data.frame with data to create the density plot
+#'   from. The variables for x, y axis, fill, and faceting must be
+#'   provided by opts. Otherwise, they will be filled in with defaults, see
+#'   merge_contour_opts(). The order in which variables appear on the axes is
+#'   controlled by opts$x_order and opts$y_order.
+#' @param opts [list] A partially specified list used to customize appearance in
+#'   ggplot theme(). Options that are already specified will not be changed,
+#'   those that are not will be filled in with defaults.
+#' @return p [ggplot] A ggplot stat_density2d object with nice defaults.
 #' @examples
 #' plot_data <- expand.grid(
 #'   "ix" = seq_len(1000),
@@ -68,8 +81,9 @@ merge_contour_opts <- function(opts = list()) {
 #' ggcontours(plot_data, list(facet_terms = c("row", ".")))
 #' ggcontours(plot_data, list(facet_terms = c("row", "."), fill_type = "discrete", fill = "col"))
 #' @importFrom magrittr %>%
-#' @importFrom ggplot2 ggplot2 stat_density2d aes_string guides guide_legend coord_fixed
+#' @importFrom ggplot2 ggplot stat_density2d aes_string guides guide_legend coord_fixed
 #' scale_fill_gradientn scale_fill_manual
+#' @export
 ggcontours <- function(plot_data, opts = list()) {
   opts <- merge_contour_opts(opts)
   aes_opts <- list(
