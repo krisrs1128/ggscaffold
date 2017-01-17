@@ -26,7 +26,7 @@ Make line plots with nice defaults
 \examples{
 data(lines)
 opts <- list(col = "color", facet_terms = c("rows", "columns"),
-             color_scale = ggplot2::scale_color_brewer(palette = "Set3"),
+             color_scale = ggplot2::scale_color_brewer(palette = "Set1"),
              theme_opts = list(border_size = .6))
 gglines(lines, opts)
 }
