@@ -14,6 +14,9 @@
 order_vars <- function(X, vars, var_orders) {
   for (i in seq_along(vars)) {
 
+    ## . has special meaning in faceting formula, is not a column
+    if (vars[i] == ".") next
+
     ## If levels already exist, but are not specified in var_orders, use the
     ## existing ordering.
     if (i > length(var_orders)) {
