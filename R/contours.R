@@ -19,7 +19,13 @@ merge_contour_opts <- function(opts = list()) {
     ## aesthetic options
     "x" = "x",
     "y" = "y",
-    "col" = NULL,
+    "fill" = "..level..",
+
+    ## contour appearance options
+    "geom" = "polygon",
+    "alpha" = 0.05,
+    "h" = 0.1,
+    "bins"= 40,
 
     ## scale_options
     "fill_colors" = viridis(256, option = "D"),
@@ -47,13 +53,14 @@ merge_contour_opts <- function(opts = list()) {
 #'   x = rnorm(9000),
 #'   y = rnorm(9000)
 #' )
+#' p <- ggcontours(plot_data, list(facet_terms = c("row", "col")))
 #' @importFrom magrittr %>%
 ggcontours <- function(plot_data, opts = list()) {
   opts <- merge_contour_opts(opts)
   aes_opts <- list(
     "x" = opts$x,
     "y" = opts$y,
-    "col" = opts$col
+    "fill" = opts$fill
   )
 
   plot_data <- plot_data %>%
@@ -61,7 +68,11 @@ ggcontours <- function(plot_data, opts = list()) {
 
   p <- ggplot(plot_data) +
     stat_density2d(
-      do.call(aes_string, aes_opts)
+      do.call(aes_string, aes_opts),
+      geom = opts$geom,
+      alpha = opts$alpha,
+      h = opts$h,
+      bins = opts$bins
     ) +
     scale_fill_gradientn(
       colors = opts$fill_colors,
