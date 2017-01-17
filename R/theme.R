@@ -19,7 +19,9 @@ merge_theme_opts <- function(opts = list()) {
     border_size = 0,
     spacing = 0,
     subtitle_size = 7,
-    text_size = 5
+    text_size = 5,
+    key_width = 0.2,
+    key_height = 0.4
   )
   modifyList(default_opts, opts)
 }
@@ -45,6 +47,8 @@ min_theme <- function(opts = list()) {
       legend.title = element_text(size = opts$subtitle_size),
       legend.text = element_text(size = opts$text_size),
       legend.key = element_blank(),
+      legend.key.width = unit(opts$key_width, "line"),
+      legend.key.height = unit(opts$key_height, "line"),
       axis.text = element_text(size = opts$text_size),
       axis.title = element_text(size = opts$subtitle_size),
       axis.ticks = element_blank(),
