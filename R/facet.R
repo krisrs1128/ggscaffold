@@ -21,9 +21,13 @@ order_vars <- function(x, x_order = NULL) {
 #' @importFrom ggplot2 facet_grid
 #' @return p [ggplot object] The version of p including potential faceting.
 #' @export
-add_facet <- function(p, facet_terms = NULL) {
+add_facet <- function(p, facet_terms = NULL, facet_scales = "fixed", facet_space = "fixed") {
   if (!is.null(facet_terms)) {
-    p <- p + facet_grid(paste0(facet_terms, collapse = "~"))
+    p <- p + facet_grid(
+               paste0(facet_terms, collapse = "~"),
+               scales = facet_scales,
+               space = facet_space
+             )
   }
   p
 }
