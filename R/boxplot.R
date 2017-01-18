@@ -94,10 +94,10 @@ ggboxplot <- function(plot_data, opts = list()) {
       notchwidth = opts$notchwidth,
       size = opts$size
     ) +
-    scale_color_manual(values = opts$col_colors) +
+    scale_color_manual(values = opts$col_colors, guide = FALSE) +
     scale_fill_manual(values = opts$fill_colors) +
     scale_y_continuous(breaks = pretty_breaks(opts$n_breaks)) +
-   guides(fill = guide_legend(keywidth = 0.2, keyheight = 0.4)) +
+    guides(fill = guide_legend(keywidth = 0.2, keyheight = 0.4)) +
     min_theme(opts$theme_opts)
 
   add_facet(p, opts$facet_terms)
