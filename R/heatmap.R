@@ -39,7 +39,7 @@ merge_heatmap_opts <- function(opts = list()) {
 #'   those that are not will be filled in with defaults.
 #' @return p [ggplot] A ggplot geom_tile() heatmap with nice defaults.
 #' @importFrom ggplot2 ggplot geom_tile aes_string scale_x_discrete
-#'   scale_fill_gradient
+#'   scale_fill_gradient scale_y_discrete
 #' @importFrom magrittr %>%
 #' @examples
 #' X <- matrix(rnorm(10 * 10), 10, 10, dimnames = list(1:10, letters[1:10]))
