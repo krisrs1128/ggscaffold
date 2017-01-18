@@ -1,3 +1,8 @@
+#! /usr/bin/env Rscript
+
+## File description -------------------------------------------------------------
+## Some functions to simplify creation of my style of boxplots.
+## author: kriss1@stanford.edu
 
 #' Merge default options for a boxplot
 #'
@@ -51,6 +56,16 @@ merge_boxplot_opts <- function(opts = list()) {
 #'   appareance in ggplot theme(). Options that are already specified will not
 #'   be changed, those that are not will be filled in with defaults.
 #' @return p [ggplot] A ggplot geom_boxplot() with nice defaults
+#' @examples
+#' # create an example data set
+#' X <- data.frame(
+#'  "x" = sample(c("A", "B", "C"), 1000, replace = TRUE),
+#'  "y" = rnorm(1000),
+#'  "fill" = sample(c("alpha", "beta"), 1000, replace = TRUE)
+#' )
+#'
+#' ggboxplot(X)
+#' ggboxplot(X, list(col = "fill", fill = "fill"))
 #' @importFrom ggplot2 ggplot geom_boxplot aes_string scale_color_manual
 #'   scale_fill_manual scale_y_continuous
 #' @importFrom scales pretty_breaks
