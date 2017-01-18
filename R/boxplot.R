@@ -82,12 +82,11 @@ ggboxplot <- function(plot_data, opts = list()) {
     "col" = opts$col
   )
 
-  for (i in seq_along(opts$facet_terms)) {
-    plot_data[, opts$facet_terms[i]] <- order_vars(
-      plot_data[, opts$facet_terms[i]],
-      opts$facet_orders[[i]]
-    )
-  }
+  plot_data <- order_multiple(
+    plot_data,
+    opts$facet_terms,
+    opts$facet_orders
+  )
 
   p <- ggplot(plot_data) +
     geom_boxplot(
