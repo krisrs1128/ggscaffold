@@ -31,8 +31,7 @@ merge_line_opts <- function(opts = list()) {
 
     ## faceting
     "facet_terms" = NULL,
-    "row_order" = NULL,
-    "col_order" = NULL,
+    "facet_order" = NULL,
 
     ## themes
     "theme_opts" = list()
@@ -72,12 +71,11 @@ gglines <- function(plot_data, opts = list()) {
   aes_opts <- aes_opts[!sapply(aes_opts, is.null)]
 
   ## reorder levels for rows / columns
-  if (!is.null(opts$facet_terms)) {
-    plot_data <- plot_data %>%
-      order_vars(
-        opts$facet_terms,
-        list(opts$row_order, opts$col_order)
-      )
+  for (i in seq_along(opts$facet_terms)) {
+    plot_data[, opts$facet_terms[i]] <- order_vars(
+      plot_data[, opts$facet_terms[i]],
+      opts$facet_orders[[i]]
+    )
   }
 
   p <- ggplot(plot_data) +
