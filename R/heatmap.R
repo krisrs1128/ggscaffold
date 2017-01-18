@@ -72,5 +72,5 @@ ggheatmap <- function(plot_data, opts = list()) {
     coord_fixed(opts$coord_ratio) +
     min_theme(opts$theme_opts)
 
-  add_facet(p, opts$facet_terms)
+  add_facet(p, opts$facet_terms, opts$facet_scales, opts$facet_space)
 }
