@@ -1,41 +1,15 @@
 
-##' Reorder A collection of factors in a data.frame
+##' Reorder levels in a vector
 ##'
-##' @param X [data.frame] A data.frame whose columns have levels we want to
-##'   reorder.
-##' @param vars [numeric vector] A vector of column names in X, for each column
-##'   that we want to reorder.
-##' @param vars [list of vectors] The new levels to use for each name in vars.
-##'   If this has any nulls, we use the existing levels, or just the unique
-##'   values.
-##' @return X [data.frame] A version of X with the columns in vars already
-##'   reordered.
+##' @param x [vector] A vector whose factors we want to reorder (or create).
+##' @param x_order [vectors] The new levels to use for each name in vars.
+##' @return x [vector] version of x with levels in the correct order
 ##' @export
-order_vars <- function(X, vars, var_orders) {
-  for (i in seq_along(vars)) {
-
-    ## . has special meaning in faceting formula, is not a column
-    if (vars[i] == ".") next
-
-    ## If levels already exist, but are not specified in var_orders, use the
-    ## existing ordering.
-    if (is.null(var_orders[[i]])) {
-      cur_lev <- levels(X[, vars[i]])
-
-      if (!is.null(cur_lev)) {
-        var_orders[[i]] <- cur_lev
-      } else {
-        var_orders[[i]] <- unique(X[, vars[i]]) %>%
-          unlist()
-      }
-    }
-
-    X[, vars[i]] <- factor(
-      unlist(X[, vars[i]]),
-      levels = var_orders[[i]]
-    )
+order_vars <- function(x, x_order = NULL) {
+  if (is.null(x_order)) {
+    x_order <- sort(unique(x))
   }
-  X
+  factor(x, levels = x_order)
 }
 
 #' Facet a plot according to specified variables
