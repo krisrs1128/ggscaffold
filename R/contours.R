@@ -37,7 +37,7 @@ merge_contour_opts <- function(opts = list()) {
 
     ## faceting
     "facet_terms" = c(NULL),
-    "facet_orders" = list(rep(NULL, length(opts$facet_terms))),
+    "facet_orders" = rep(list(NULL), length(opts$facet_terms)),
     "theme_opts" = list(),
 
     ## aspect ratio
@@ -92,8 +92,12 @@ ggcontours <- function(plot_data, opts = list()) {
     "fill" = opts$fill
   )
 
-  plot_data <- plot_data %>%
-    order_vars(opts$facet_terms, opts$facet_orders)
+  for (i in seq_along(opts$facet_terms)) {
+    plot_data[, opts$facet_terms[i]] <- order_vars(
+      plot_data[, opts$facet_terms[i]],
+      opts$facet_orders[[i]]
+    )
+  }
 
   p <- ggplot(plot_data) +
     stat_density2d(
