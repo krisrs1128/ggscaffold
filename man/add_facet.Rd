@@ -4,7 +4,8 @@
 \alias{add_facet}
 \title{Facet a plot according to specified variables}
 \usage{
-add_facet(p, facet_terms = NULL)
+add_facet(p, facet_terms = NULL, facet_scales = "fixed",
+  facet_space = "fixed")
 }
 \arguments{
 \item{p}{[ggplot object] A plot object we might want to facet.}
