@@ -2,26 +2,19 @@
 % Please edit documentation in R/facet.R
 \name{order_vars}
 \alias{order_vars}
-\title{Reorder A collection of factors in a data.frame}
+\title{Reorder levels in a vector}
 \usage{
-order_vars(X, vars, var_orders)
+order_vars(x, x_order = NULL)
 }
 \arguments{
-\item{X}{[data.frame] A data.frame whose columns have levels we want to
-reorder.}
+\item{x}{[vector] A vector whose factors we want to reorder (or create).}
 
-\item{vars}{[numeric vector] A vector of column names in X, for each column
-that we want to reorder.}
-
-\item{vars}{[list of vectors] The new levels to use for each name in vars.
-If this has any nulls, we use the existing levels, or just the unique
-values.}
+\item{x_order}{[vectors] The new levels to use for each name in vars.}
 }
 \value{
-X [data.frame] A version of X with the columns in vars already
-  reordered.
+x [vector] version of x with levels in the correct order
 }
 \description{
-Reorder A collection of factors in a data.frame
+Reorder levels in a vector
 }
 
