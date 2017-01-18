@@ -1,6 +1,14 @@
 
+#' Merge default options for a boxplot
+#'
+#' @param opts [list] A partially specified list used to customize appearance in
+#'   ggplot theme(). Options that are already specified will not be changed,
+#'   those that are not will be filled in with defaults.
+#' @return opts [list]  A version of opts with unspecified options filled in
+#'   with defaults.
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom viridis viridis
+#' @export
 merge_boxplot_opts <- function(opts = list()) {
   default_opts <- list(
     ## discrete or gradient fill?
