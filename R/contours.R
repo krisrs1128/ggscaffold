@@ -36,8 +36,8 @@ merge_contour_opts <- function(opts = list()) {
     "fill_breaks" = NULL,
 
     ## faceting
-    "facet_terms" = NULL,
-    "facet_orders" = NULL,
+    "facet_terms" = c(NULL),
+    "facet_orders" = list(rep(NULL, length(opts$facet_terms))),
     "theme_opts" = list(),
 
     ## aspect ratio

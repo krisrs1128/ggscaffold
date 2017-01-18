@@ -19,17 +19,21 @@ order_vars <- function(X, vars, var_orders) {
 
     ## If levels already exist, but are not specified in var_orders, use the
     ## existing ordering.
-    if (i > length(var_orders)) {
+    if (is.null(var_orders[[i]])) {
       cur_lev <- levels(X[, vars[i]])
 
       if (!is.null(cur_lev)) {
         var_orders[[i]] <- cur_lev
       } else {
-        var_orders[[i]] <- unique(X[, vars[i]])
+        var_orders[[i]] <- unique(X[, vars[i]]) %>%
+          unlist()
       }
     }
 
-    X[, vars[i]] <- factor(X[, vars[i]], levels = var_orders[[i]])
+    X[, vars[i]] <- factor(
+      unlist(X[, vars[i]]),
+      levels = var_orders[[i]]
+    )
   }
   X
 }

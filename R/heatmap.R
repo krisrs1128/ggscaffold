@@ -50,13 +50,14 @@ merge_heatmap_opts <- function(opts = list()) {
 ggheatmap <- function(plot_data, opts = list()) {
   # merge defaults and relevel variables
   opts <- merge_heatmap_opts(opts)
-  plot_data <- plot_data %>%
-    order_vars(
-      c(opts$x, opts$y),
-      list(opts$x_order, opts$y_order)
-    )
+  if (!is.null(opts$x_order)) {
+    plot_data[, opts$x] <- factor(plot_data[, opts$x], levels = opts$x_order)
+  }
+  if (!is.null(opts$y_order)) {
+    plot_data[, opts$y] <- factor(plot_data[, opts$y], levels = opts$y_order)
+  }
 
-  # create plot
+  ## create plot
   p <- ggplot(plot_data) +
     geom_tile(aes_string(x = opts$x, y = opts$y, fill = opts$fill)) +
     scale_x_discrete(expand = c(0, 0)) +
