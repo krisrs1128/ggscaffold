@@ -12,6 +12,25 @@ order_vars <- function(x, x_order = NULL) {
   factor(x, levels = x_order)
 }
 
+#' Wrap order_vars()
+#'
+#' @param X [data.frame] A data.frame some whose columns we want to throw into
+#'   order_vars
+#' @param x_names [character vector] The names of the columns to reorder
+#' @param x_orders [list of character vectors, or NULL] The new orders to input
+#'   to order_vars
+#' @return X [data.frame] The original X, but with columns x_names reordered
+order_multiple <- function(X, x_names, x_orders) {
+  for (i in seq_along(x_names)) {
+    if (x_names[i] == ".") next
+    X[, x_names[i]] <- order_vars(
+      X[, x_names[i]],
+      x_orders[[i]]
+    )
+  }
+  X
+}
+
 #' Facet a plot according to specified variables
 #'
 #' @param p [ggplot object] A plot object we might want to facet.
