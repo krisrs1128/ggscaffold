@@ -31,7 +31,9 @@ merge_line_opts <- function(opts = list()) {
 
     ## faceting
     "facet_terms" = NULL,
-    "facet_order" = NULL,
+    "facet_order" = rep(list(NULL), length = opts$facet_terms),
+    "facet_scales" = "fixed",
+    "facet_space" = "fixed",
 
     ## themes
     "theme_opts" = list()
@@ -59,7 +61,6 @@ merge_line_opts <- function(opts = list()) {
 #' gglines(lines, opts)
 #' @export
 gglines <- function(plot_data, opts = list()) {
-  ## merge and prepare opts
   opts <- merge_line_opts(opts)
   aes_opts <- list(
     "x" = opts$x,
@@ -86,5 +87,5 @@ gglines <- function(plot_data, opts = list()) {
     opts$color_scale +
     min_theme(opts$theme_opts)
 
-  add_facet(p, opts$facet_terms)
+  add_facet(p, opts$facet_terms, opts$facet_scales, opts$facet_space)
 }

@@ -38,6 +38,8 @@ merge_contour_opts <- function(opts = list()) {
     ## faceting
     "facet_terms" = c(NULL),
     "facet_orders" = rep(list(NULL), length(opts$facet_terms)),
+    "facet_scales" = "fixed",
+    "facet_space" = "fixed",
     "theme_opts" = list(),
 
     ## aspect ratio
@@ -124,5 +126,5 @@ ggcontours <- function(plot_data, opts = list()) {
       )
   }
 
-  add_facet(p, opts$facet_terms)
+  add_facet(p, opts$facet_terms, opts$facet_scales, opts$facet_space)
 }

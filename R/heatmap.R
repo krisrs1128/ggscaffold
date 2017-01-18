@@ -21,6 +21,8 @@ merge_heatmap_opts <- function(opts = list()) {
     "fill_colors" = viridis(256, option = "D"),
     "fill_breaks" = NULL,
     "facet_terms" = NULL,
+    "facet_scales" = "fixed",
+    "facet_space" = "fixed",
     "x_order" = NULL,
     "y_order" = NULL,
     "coord_ratio" = 1,
