@@ -23,6 +23,7 @@ merge_heatmap_opts <- function(opts = list()) {
     "facet_terms" = NULL,
     "x_order" = NULL,
     "y_order" = NULL,
+    "coord_ratio" = 1,
     "theme_opts" = list()
   )
   modifyList(default_opts, opts)
@@ -66,6 +67,7 @@ ggheatmap <- function(plot_data, opts = list()) {
       colors = opts$fill_colors,
       breaks = opts$fill_breaks
     ) +
+    coord_fixed(opts$coord_ratio) +
     min_theme(opts$theme_opts)
 
   add_facet(p, opts$facet_terms)
