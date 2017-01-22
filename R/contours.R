@@ -24,6 +24,7 @@ merge_contour_opts <- function(opts = list()) {
     "x" = "x",
     "y" = "y",
     "fill" = "..level..",
+    "group" = NULL,
 
     ## contour appearance options
     "geom" = "polygon",
@@ -46,13 +47,12 @@ merge_contour_opts <- function(opts = list()) {
     coord_ratio = 1
   )
 
-  if (!is.null(opts$fill_type) && opts$fill_type != "gradient") {
+  if (!is.null(opts$fill) && opts$fill_type != "gradient") {
     default_opts$fill_colors <- brewer.pal(8, "Set2")
   }
 
   modifyList(default_opts, opts)
 }
-
 
 #' Default Contour / Stat Density 2D plot
 #'
@@ -91,7 +91,8 @@ ggcontours <- function(plot_data, opts = list()) {
   aes_opts <- list(
     "x" = opts$x,
     "y" = opts$y,
-    "fill" = opts$fill
+    "fill" = opts$fill,
+    "group" = opts$group
   )
 
   plot_data <- order_multiple(
