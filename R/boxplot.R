@@ -26,6 +26,7 @@ merge_boxplot_opts <- function(opts = list()) {
     "fill_colors" = brewer.pal(8, "Set1"),
     "col" = NULL,
     "col_colors" = brewer.pal(8, "Set1") ,
+    "linetype" = NULL,
 
     ## boxplot appearance options
     alpha = 0.6,
@@ -79,7 +80,8 @@ ggboxplot <- function(plot_data, opts = list()) {
     "x" = opts$x,
     "y" = opts$y,
     "fill" = opts$fill,
-    "col" = opts$col
+    "col" = opts$col,
+    "linetype" = opts$linetype
   )
 
   plot_data <- order_multiple(
