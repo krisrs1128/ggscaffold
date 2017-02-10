@@ -28,11 +28,12 @@ merge_boxplot_opts <- function(opts = list()) {
     "col_colors" = brewer.pal(8, "Set1") ,
 
     ## boxplot appearance options
-    alpha = 0.6,
-    outlier.size = 0.05,
-    notchwidth = 0.1,
-    size = 0.1,
-    n_breaks = 3,
+    "alpha" = 0.6,
+    "outlier.size" = 0.05,
+    "outlier.shape" = 16,
+    "notchwidth" = 0.1,
+    "size" = 0.1,
+    "n_breaks" = 3,
 
     ## faceting
     "facet_terms" = c(NULL),
@@ -93,6 +94,7 @@ ggboxplot <- function(plot_data, opts = list()) {
       do.call(aes_string, aes_opts),
       alpha = opts$alpha,
       outlier.size = opts$outlier.size,
+      outlier.shape = opts$outlier.shape,
       notchwidth = opts$notchwidth,
       size = opts$size
     ) +
